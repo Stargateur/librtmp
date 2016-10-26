@@ -27,6 +27,7 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <sys/types.h>
+#include <windows.h>
 #ifdef _MSC_VER	/* MSVC */
 #define strcasecmp stricmp
 #define strncasecmp strnicmp

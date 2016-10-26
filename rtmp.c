@@ -158,7 +158,9 @@ RTMP_GetTime()
 #ifdef _DEBUG
   return 0;
 #elif defined(_WIN32)
-  return timeGetTime();
+  SYSTEMTIME SystemTime;
+  GetSystemTime(&SystemTime);
+  return (SystemTime.wMilliseconds);
 #else
   struct tms t;
   if (!clk_tck) clk_tck = sysconf(_SC_CLK_TCK);
