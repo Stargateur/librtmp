@@ -20,4 +20,4 @@ add_library(rtmp
 if(WIN32)
   target_link_libraries(rtmp PUBLIC ws2_32)
 endif()
-add_definitions(rtmp -DNO_CRYPTO)
+target_compile_definitions(rtmp PUBLIC -DNO_CRYPTO)
