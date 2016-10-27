@@ -4,7 +4,6 @@ project(librtmp)
 FIND_PACKAGE(OpenSSL)
 FIND_PACKAGE(ZLIB)
 
-
 add_library(rtmp
   STATIC
   rtmp.c
@@ -28,9 +27,7 @@ if(OPENSSL_FOUND AND ZLIB_FOUND)
   target_link_libraries(rtmp PUBLIC ${OPENSSL_LIBRARIES} ${ZLIB_LIBRARIES})
   target_include_directories(rtmp PUBLIC ${OPENSSL_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
   target_compile_definitions(rtmp PUBLIC -DCRYPTO=OPENSSL)
-
   message(STATUS "CRYPTO=OPENSSL")
-
 else()
   target_compile_definitions(rtmp PUBLIC -DNO_CRYPTO)
 endif()
