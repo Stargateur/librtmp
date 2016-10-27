@@ -1,0 +1,21 @@
+Hello to librtmp with cmake !
+
+INSTALL for win10 with MSVS
+
+To build you need :
+
+Visual Studio 2015 Update 3
+https://www.visualstudio.com/post-download-vs/?sku=community&clcid=0x409&downloadrename=true
+
+cmake >= 3.0
+https://cmake.org/files/v3.7/cmake-3.7.0-rc2-win64-x64.msi
+
+To build with CRYPTO, only support openssl you need :
+
+ZLIB = 1.2.8
+http://zlib.net/zlib128-dll.zip
+install it on %PROGFILES%
+
+OpenSSL = 1.0.2j
+https://slproweb.com/download/Win64OpenSSL-1_0_2j.exe
+install by default
