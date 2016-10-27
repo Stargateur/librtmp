@@ -29,14 +29,14 @@
 #include <sys/types.h>
 #include <windows.h>
 #ifdef _MSC_VER	/* MSVC */
-#define strcasecmp stricmp
-#define strncasecmp strnicmp
+#define strdup _strdup
+#define strncasecmp _strnicmp
+#define strcasecmp _stricmp
 #endif
 
 #define GetSockError()	WSAGetLastError()
 #define SetSockError(e)	WSASetLastError(e)
 #define setsockopt(a,b,c,d,e)	(setsockopt)(a,b,c,(const char *)d,(int)e)
-#define EWOULDBLOCK	WSAETIMEDOUT	/* we don't use nonblocking, but we do use timeouts */
 #define sleep(n)	Sleep(n*1000)
 #define msleep(n)	Sleep(n)
 #define SET_RCVTIMEO(tv,s)	int tv = s*1000
