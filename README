@@ -13,7 +13,7 @@ https://cmake.org/files/v3.7/cmake-3.7.0-rc2-win64-x64.msi
 To build with CRYPTO, only support openssl you need :
 
 ZLIB = 1.2.8
-http://zlib.net/zlib128.zip
+http://zlib.net/zlib128.zip or get 64 bin compile by me here https://1fichier.com/?9ogtdzkma3
 use cmake and visual studio to compile it use cmake install to have INSTALL.svn project in visual studio
 
 OpenSSL = 1.0.2j
