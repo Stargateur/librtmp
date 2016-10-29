@@ -1,5 +1,3 @@
-#ifndef __RTMP_HTTP_H__
-#define __RTMP_HTTP_H__
 /*
  *      Copyright (C) 2010 Howard Chu
  *      Copyright (C) 2010 Antti Ajanki
@@ -22,6 +20,11 @@
  *  Boston, MA  02110-1301, USA.
  *  http://www.gnu.org/copyleft/lgpl.html
  */
+
+#ifndef __RTMP_HTTP_H__
+#define __RTMP_HTTP_H__
+
+#include <stddef.h>
 
 typedef enum {
   HTTPRES_OK,               /* result OK */
