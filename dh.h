@@ -26,6 +26,7 @@
 #include <string.h>
 #include <assert.h>
 #include <limits.h>
+#include <stdbook.h>
 
 #ifdef USE_POLARSSL
 #include <polarssl/dhm.h>
@@ -196,7 +197,7 @@ typedef BIGNUM * MP_t;
 static int
 isValidPublicKey(MP_t y, MP_t p, MP_t q)
 {
-  int ret = TRUE;
+  int ret = true;
   MP_t bn;
   assert(y);
 
@@ -208,7 +209,7 @@ isValidPublicKey(MP_t y, MP_t p, MP_t q)
   if (MP_cmp(y, bn) < 0)
     {
       RTMP_Log(RTMP_LOGERROR, "DH public key must be at least 2");
-      ret = FALSE;
+      ret = false;
       goto failed;
     }
 
@@ -218,7 +219,7 @@ isValidPublicKey(MP_t y, MP_t p, MP_t q)
   if (MP_cmp(y, bn) > 0)
     {
       RTMP_Log(RTMP_LOGERROR, "DH public key must be at most p-2");
-      ret = FALSE;
+      ret = false;
       goto failed;
     }
 
