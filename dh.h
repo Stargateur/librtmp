@@ -26,7 +26,7 @@
 #include <string.h>
 #include <assert.h>
 #include <limits.h>
-#include <stdbook.h>
+#include <stdbool.h>
 
 #ifdef USE_POLARSSL
 #include <polarssl/dhm.h>
