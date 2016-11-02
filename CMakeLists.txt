@@ -23,7 +23,7 @@ add_library(rtmp
   rtmp_sys.h
   rtmp.h
 )
-if(OPENSSL_FOUND AND ZLIB_FOUND)
+if(OPENSSL_FOUND AND ZLIB_FOUND AND false)
   target_link_libraries(rtmp PUBLIC ${OPENSSL_LIBRARIES} ${ZLIB_LIBRARIES})
   target_include_directories(rtmp PUBLIC ${OPENSSL_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
   target_compile_definitions(rtmp PUBLIC -DCRYPTO=OPENSSL)
