@@ -5167,3 +5167,42 @@ RTMP_Write(RTMP *r, const char *buf, int size)
     }
   return size+s2;
 }
+
+int create_server(int port)
+{
+  #ifdef WIN32
+  {
+    WORD version;
+    WSADATA wsaData;
+
+    version = MAKEWORD(2, 2);
+    WSAStartup(version, &wsaData);
+  }
+  #endif
+
+  struct sockaddr_in addr;
+  int sockfd;
+
+  sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+  if (sockfd == -1) {
+    RTMP_Log(RTMP_LOGERROR, "%s, couldn't create socket", __FUNCTION__);
+    return -1;
+  }
+
+  addr.sin_family = AF_INET;
+  addr.sin_addr.s_addr = inet_addr("0.0.0.0");
+  addr.sin_port = htons(port);
+
+  if (bind(sockfd, (struct sockaddr*)&addr, sizeof(struct sockaddr_in)) == -1) {
+      RTMP_Log(RTMP_LOGERROR, "%s, TCP bind failed for port number: %d", __FUNCTION__,
+          port);
+      return -1;
+  }
+
+  if (listen(sockfd, 10) == -1) {
+      RTMP_Log(RTMP_LOGERROR, "%s, listen failed", __FUNCTION__);
+      close(sockfd);
+      return -1;
+  }
+  return sockfd;
+}
