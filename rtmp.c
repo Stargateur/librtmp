@@ -3832,13 +3832,13 @@ SHandShake(RTMP *r)
 #endif
 
   if (!WriteN(r, serverbuf, RTMP_SIG_SIZE + 1)) {
-    RTMP_Log(RTMP_LOGERROR, "%s: unable to write",
+    RTMP_Log(RTMP_LOGERROR, "%s: unable to write serverbuf",
   __FUNCTION__);
     return FALSE;
   }
 
   if (ReadN(r, clientsig, RTMP_SIG_SIZE) != RTMP_SIG_SIZE) {
-    RTMP_Log(RTMP_LOGERROR, "%s: unable to read the right size",
+    RTMP_Log(RTMP_LOGERROR, "%s: unable to read the right size clientsig",
   __FUNCTION__);
     return FALSE;
   }
@@ -3853,11 +3853,17 @@ SHandShake(RTMP *r)
       clientsig[4], clientsig[5], clientsig[6], clientsig[7]);
 
   /* 2nd part of handshake */
-  if (!WriteN(r, clientsig, RTMP_SIG_SIZE))
+  if (!WriteN(r, clientsig, RTMP_SIG_SIZE)) {
+    RTMP_Log(RTMP_LOGERROR, "%s: unable to write clientsig",
+  __FUNCTION__);
     return FALSE;
+  }
 
-  if (ReadN(r, clientsig, RTMP_SIG_SIZE) != RTMP_SIG_SIZE)
+  if (ReadN(r, clientsig, RTMP_SIG_SIZE) != RTMP_SIG_SIZE) {
+    RTMP_Log(RTMP_LOGERROR, "%s: unable to read the right size clientsig",
+  __FUNCTION__);
     return FALSE;
+  }
 
   bMatch = (memcmp(serversig, clientsig, RTMP_SIG_SIZE) == 0);
   if (!bMatch)
