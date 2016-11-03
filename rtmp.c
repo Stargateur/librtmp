@@ -3870,6 +3870,7 @@ SHandShake(RTMP *r)
     {
       RTMP_Log(RTMP_LOGWARNING, "%s, client signature does not match!", __FUNCTION__);
     }
+  RTMP_Log(RTMP_LOGINFO, "%s, sucess shandshake", __FUNCTION__);
   return TRUE;
 }
 #endif
