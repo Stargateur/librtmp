@@ -3831,11 +3831,17 @@ SHandShake(RTMP *r)
     serversig[i] = (char)(rand() % 256);
 #endif
 
-  if (!WriteN(r, serverbuf, RTMP_SIG_SIZE + 1))
+  if (!WriteN(r, serverbuf, RTMP_SIG_SIZE + 1)) {
+    RTMP_Log(RTMP_LOGERROR, "%s: unable to write",
+  __FUNCTION__);
     return FALSE;
+  }
 
-  if (ReadN(r, clientsig, RTMP_SIG_SIZE) != RTMP_SIG_SIZE)
+  if (ReadN(r, clientsig, RTMP_SIG_SIZE) != RTMP_SIG_SIZE) {
+    RTMP_Log(RTMP_LOGERROR, "%s: unable to read the right size",
+  __FUNCTION__);
     return FALSE;
+  }
 
   /* decode client response */
 
